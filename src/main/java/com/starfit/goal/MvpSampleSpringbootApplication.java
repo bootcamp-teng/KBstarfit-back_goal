@@ -1,4 +1,4 @@
-package com.starfit.exercise;
+package com.starfit.goal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
