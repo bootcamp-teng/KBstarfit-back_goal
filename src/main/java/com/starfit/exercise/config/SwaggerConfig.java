@@ -1,4 +1,4 @@
-package com.starfit.goal.config;
+package com.starfit.exercise.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ public class SwaggerConfig  {
 	        return new Docket(DocumentationType.SWAGGER_2)
 	                .apiInfo(apiInfo())
 	                .select()
-	                .apis(RequestHandlerSelectors.basePackage("com.demo.microservices.rest"))
+	                .apis(RequestHandlerSelectors.basePackage("com.starfit.exercise.rest"))
 	                .paths(PathSelectors.any())
 	                .build();
 	    }
