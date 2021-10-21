@@ -40,7 +40,7 @@ podTemplate(
 	
 		// Git clone from Source Repository.
 		stage("Get Source") {
-			git url:"https://github.com/bootcamp-teng/KBstarfit-back_user.git", branch: "main", credentialsId: "git_credential"
+			git url:"https://github.com/bootcamp-teng/KBstarfit-back_goal.git", branch: "main", credentialsId: "git_credential"
 			// Javascript based on Node.js
 	 		//git branch: 'main', url: 'https://github.com/happykube/hellonode.git'
 			// Java based on Spring Boot, branch : msa
