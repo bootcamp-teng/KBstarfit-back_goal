@@ -1,5 +1,7 @@
 server:
   port: ${service_port:8080}
+  servlet:
+    context-path: ${SERVLET_CONTEXT_PATH:/starfitgoal}  
 
 spring:  
   application:
@@ -11,9 +13,10 @@ spring:
     
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://${db_host:defaulthost}:${db_port:defaultport}/${db_name:exercise}?useUnicode=true&characterEncoding=utf-8
+#    url: jdbc:mysql://${db_host:169.56.174.138}:${db_port:31084}/${db_name:goal}?useUnicode=true&characterEncoding=utf-8 # 로컬용
+    url: jdbc:mysql://${db_host:mysql}:${db_port:3306}/${db_name:goal}?useUnicode=true&characterEncoding=utf-8 베포용
     username: ${db_user:root}
-    password: ${db_pw:password}
+    password: ${db_pw:passw0rd}
     sql-script-encoding: utf-8
     hikari:
       connection-timeout: 5000
@@ -42,10 +45,14 @@ logging:
    level: 
       org.springframework: warn
       com.springboot.microservices.sample: debug
+      org:
+        hibernate:
+          type:
+            descriptor:
+              sql: trace
   
 mybatis:
     mapper-locations: classpath:mapper/*.xml
     configuration:
         map-underscore-to-camel-case: true
     type-aliases-package: com.demo.microservices.model
-

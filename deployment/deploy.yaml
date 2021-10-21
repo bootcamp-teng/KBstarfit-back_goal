@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sample
+  name: goal
   labels:
-    app: sample
+    app: goal
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sample
+      app: goal
   template:
     metadata:
       labels:
-        app: sample
+        app: goal
     spec:
       containers:
-      - name: sample
-        image: stfantasy3324/starfitexercise:dev
+      - name: goal
+        image: hjsky1010/goal:dev
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -24,25 +24,25 @@ spec:
         - name: DB_SERVER
           valueFrom:
             configMapKeyRef:
-              name: sample-config
+              name: goal-config
               key: DB_SERVER
         - name: DB_PORT
           valueFrom:
             configMapKeyRef:
-              name: sample-config
+              name: goal-config
               key: DB_PORT
         - name: DB_USERNAME
           valueFrom:
             configMapKeyRef:
-              name: sample-config
+              name: goal-config
               key: DB_USERNAME
         - name: DB_PASSWORD
           valueFrom:
             configMapKeyRef:
-              name: sample-config
+              name: goal-config
               key: DB_PASSWORD
         - name: SERVLET_CONTEXT_PATH
           valueFrom:
             configMapKeyRef:
-              name: sample-config
+              name: goal-config
               key: SERVLET_CONTEXT_PATH

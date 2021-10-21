@@ -40,7 +40,7 @@ podTemplate(
 	
 		// Git clone from Source Repository.
 		stage("Get Source") {
-			git url:"https://github.com/bootcamp-teng/KBstarfit-back_exercise.git", branch: "main", credentialsId: "git_credential"
+			git url:"https://github.com/bootcamp-teng/KBstarfit-back_user.git", branch: "main", credentialsId: "git_credential"
 			// Javascript based on Node.js
 	 		//git branch: 'main', url: 'https://github.com/happykube/hellonode.git'
 			// Java based on Spring Boot, branch : msa
@@ -84,7 +84,7 @@ podTemplate(
 				echo "baseDeployDir : ${baseDeployDir}"
 				sh "ls -al"
 				container('maven') {
-						sh "mvn -B -f ${baseDir} clean package"
+						sh "mvn -B -f ${baseDir} clean package -Dmaven.test.skip=true"
 						echo "*** RESULT ***"
 						sh "pwd"
 						sh "ls -al ${baseDir}/target"
@@ -131,7 +131,7 @@ podTemplate(
 					sh "kubectl apply -n ${namespace} -f ${deployment}"
 					sh "sleep 5"
 					sh "kubectl apply -n ${namespace} -f ${service}"
-					sh "kubectl apply -n ${namespace} -f ${ingress}"
+//					sh "kubectl apply -n ${namespace} -f ${ingress}"
 				}
 			}
 
