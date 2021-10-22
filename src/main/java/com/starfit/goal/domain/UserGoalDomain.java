@@ -1,5 +1,6 @@
 package com.starfit.goal.domain;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.starfit.goal.data.GoalRepository;
 import com.starfit.goal.data.UserGoalRepository;
 import com.starfit.goal.model.UserGoal;
 
@@ -24,6 +24,12 @@ public class UserGoalDomain {
 	
 	public ResponseEntity<String> insertUserGoal(UserGoal userGoal) throws Exception {
 		log.info("Start db insert");
+
+		LocalDateTime startDate = LocalDateTime.now(); 
+		LocalDateTime endDate = startDate.plusDays(userGoal.getPeriod());
+		userGoal.setStartDate(startDate);
+		userGoal.setEndDate(endDate);
+		userGoal.setStatusCode("0");
 		UserGoal re  = sampleUserGoalRepo.save(userGoal);
 		log.debug("result :"+ re);
 		
