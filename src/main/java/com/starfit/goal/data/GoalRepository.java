@@ -14,7 +14,7 @@ public interface GoalRepository extends JpaRepository<Goal, Long> {
 	 * @return
 	 * @throws Exception
 	 */
-//	List<Goal> findList() throws Exception;	
+	List<Goal> findListByUseYn(String useYn);	
 	
 	/**
 	 * 아이디로 목표 정보 확인하기
@@ -22,12 +22,6 @@ public interface GoalRepository extends JpaRepository<Goal, Long> {
 	 * @return
 	 * @throws Exception
 	 */	
-	
-	/**
-	 * 목표 정보 변경하
-	 * @param sampleGoal
-	 * @return
-	 * @throws Exception
-	 *///	UserGoal findById(String userGoalId) throws Exception;
+	 //	UserGoal findById(String userGoalId) throws Exception;
 	
 }

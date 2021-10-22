@@ -30,7 +30,7 @@ public class GoalDomain {
 		System.out.println(list);
 		try {
 			log.info("Start db select");
-			list = sampleGoalRepo.findAll();
+			list = sampleGoalRepo.findListByUseYn("Y");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -63,12 +63,12 @@ public class GoalDomain {
 		Optional<Goal> entity = sampleGoalRepo.findById(sampleGoal.getId());
 		if(entity.isPresent()) {
 			entity.get().setId(sampleGoal.getId());
-			entity.get().setAmount_max(sampleGoal.getAmount_max());
-			entity.get().setAmount_min(sampleGoal.getAmount_min());
-			entity.get().setStdamount(sampleGoal.getStdamount());
+			entity.get().setMaxExerAmt(sampleGoal.getMaxExerAmt());
+			entity.get().setMinExerAmt(sampleGoal.getMinExerAmt());
+			entity.get().setStdExerAmt(sampleGoal.getStdExerAmt());
 			entity.get().setStdPoint(sampleGoal.getStdPoint());
-			entity.get().setType(sampleGoal.getType());
-			entity.get().setUnit(sampleGoal.getUnit());
+			entity.get().setExerType(sampleGoal.getExerType());
+			entity.get().setExerUnit(sampleGoal.getExerUnit());
 			re  = sampleGoalRepo.save(sampleGoal);
 		}
 		
