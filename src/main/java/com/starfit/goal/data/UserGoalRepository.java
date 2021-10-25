@@ -9,5 +9,5 @@ import com.starfit.goal.model.UserGoal;
 
 @Repository
 public interface UserGoalRepository extends JpaRepository<UserGoal, Long> {
-	List<UserGoal> findByuserId(String userId);
+	List<UserGoal> findByuserId(Long userId);
 }

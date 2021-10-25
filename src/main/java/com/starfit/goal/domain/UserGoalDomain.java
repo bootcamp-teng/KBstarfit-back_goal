@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.starfit.goal.data.UserGoalRepository;
 import com.starfit.goal.model.UserGoal;
@@ -23,8 +24,12 @@ public class UserGoalDomain {
 	private UserGoalRepository sampleUserGoalRepo;
 	
 	public ResponseEntity<String> insertUserGoal(UserGoal userGoal) throws Exception {
+		List<UserGoal> userGoalList = getUserGoalList(userGoal.getUserId()).getBody();
+		Boolean currFlg = userGoalList.stream().anyMatch(userGoalH -> userGoalH.getStatusCode().equals("0"));
+		if(currFlg) throw new ResponseStatusException(HttpStatus.CREATED, "진행중인 목표가 존재합니다"); 
+		
 		log.info("Start db insert");
-
+		
 		LocalDateTime startDate = LocalDateTime.now(); 
 		LocalDateTime endDate = startDate.plusDays(userGoal.getPeriod());
 		userGoal.setStartDate(startDate);
@@ -59,7 +64,7 @@ public class UserGoalDomain {
 		return new ResponseEntity<String> (entity+"", HttpStatus.OK);
 	}
 
-	public ResponseEntity<List<UserGoal>> getUserGoalList(String userId) {
+	public ResponseEntity<List<UserGoal>> getUserGoalList(Long userId) {
 		List<UserGoal> re = null;
 		try {
 			log.info("Start db select");

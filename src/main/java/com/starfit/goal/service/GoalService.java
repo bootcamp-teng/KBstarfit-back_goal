@@ -50,7 +50,7 @@ public class GoalService {
 		return userGoalDomain.updateUserGoal(userGoal);
 	}
 
-	public ResponseEntity<List<UserGoal>> getUserGoalList(String userId) throws Exception {
+	public ResponseEntity<List<UserGoal>> getUserGoalList(Long userId) throws Exception {
 		return userGoalDomain.getUserGoalList(userId);
 	}
 

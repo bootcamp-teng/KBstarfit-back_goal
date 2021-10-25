@@ -70,7 +70,7 @@ public class GoalController {
 	@GetMapping("/v1/usergoalsbyid/{userId}")
 	@ApiOperation(value="사용자 진행 목표 조회하기")
 	public ResponseEntity <List<UserGoal>> getUserGoalList(
-				@PathVariable(name="userId", required = true) String userId
+				@PathVariable(name="userId", required = true) Long userId
 			) throws Exception {
 		return goalService.getUserGoalList(userId);
 	}
