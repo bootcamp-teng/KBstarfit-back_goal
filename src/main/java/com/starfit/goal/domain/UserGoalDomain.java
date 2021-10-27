@@ -88,4 +88,16 @@ public class UserGoalDomain {
 		}
 		return new ResponseEntity<Optional<UserGoal>> (re, HttpStatus.OK);
 	}
+
+	public ResponseEntity<String> deleteUserGoal(Long id) throws Exception{
+		log.info("Start db insert");
+		Optional<UserGoal> userGoal = sampleUserGoalRepo.findById(id);
+		if(userGoal.isPresent()) {
+			userGoal.get().setStatusCode("2");
+			sampleUserGoalRepo.save(userGoal.get());
+			log.debug("result :"+ "delete");
+			return new ResponseEntity<String> ("delete", HttpStatus.OK);
+		}
+		return new ResponseEntity<String> ("no data found for "+id.toString(), HttpStatus.CREATED);
+	}
 }

@@ -98,6 +98,15 @@ public class GoalController {
 			) throws Exception{
 		return goalService.updateUserGoal(userGoal);
 	}
+	
+	@DeleteMapping("/v1/usergoal/{userGoalId}")
+	@ApiOperation(value="유저 목표 정보 삭제하기(+point histroy 삭제)")
+	public ResponseEntity <String> deleteUserGoal(
+			@PathVariable(name="userGoalId",required = true ) Long id
+		) throws Exception { 
+		
+		return goalService.deleteUserGoal(id);
+	}	
 //	@GetMapping("/createtestusers/{startUserId}/{userCount}")
 //	@ApiOperation(value="테스트 사용자를 userCount명 등록하기 ")
 //	public ResponseEntity <String > createTestUsers(
